@@ -117,6 +117,15 @@ My aim is not just to write code, but to build products that make a difference. 
       featured:    false,
       color:       "#d37934",
     },
+    {
+      title:       "Student-Placement-Predictor",
+      description: "Chautha project. Add karo ya hatao.",
+      tags:        ["Python", "Scikit-Learn", "Pandas & NumPy","Streamlit","Streamlit","Git & GitHub","Streamlit Community Cloud","Jupyter Notebook / VS Code"],
+      github:      "https://github.com/aadi000666/project6",
+      live:        "https://aaditya-placement-predictor.streamlit.app",
+      featured:    false,
+      color:       "#cbd334",
+    },
     // ← Aur projects add karo
   ],
 
