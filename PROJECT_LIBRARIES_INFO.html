@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Libraries & Architecture Report</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #00d2ff;
+            --secondary: #9b6dff;
+            --accent: #ff4da6;
+            --bg: #030712;
+            --text: #f9fafb;
+            --text-muted: #9ca3af;
+            --card-bg: rgba(31, 41, 55, 0.5);
+            --border: rgba(255, 255, 255, 0.1);
+        }
+
+        @media print {
+            body {
+                background: white !important;
+                color: black !important;
+            }
+            .no-print { display: none; }
+            .card {
+                break-inside: avoid;
+                border: 1px solid #ddd !important;
+                background: white !important;
+                color: black !important;
+                box-shadow: none !important;
+            }
+            .badge { border: 1px solid black !important; color: black !important; }
+            h1, h2, h3 { color: #111 !important; }
+            .accent-text { color: #333 !important; }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 30px;
+        }
+
+        h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.5rem;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            font-weight: 300;
+        }
+
+        .section-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            margin: 40px 0 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--primary);
+        }
+
+        .section-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, var(--border), transparent);
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            border-color: rgba(0, 210, 255, 0.3);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .lib-name {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .badge {
+            font-size: 0.75rem;
+            padding: 4px 10px;
+            border-radius: 20px;
+            background: rgba(155, 109, 255, 0.1);
+            border: 1px solid rgba(155, 109, 255, 0.3);
+            color: var(--secondary);
+        }
+
+        .badge-dev {
+            background: rgba(255, 77, 166, 0.1);
+            border: 1px solid rgba(255, 77, 166, 0.3);
+            color: var(--accent);
+        }
+
+        .lib-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .why-box {
+            margin-top: 15px;
+            padding: 12px;
+            background: rgba(0, 0, 0, 0.2);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        .why-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .why-text {
+            font-style: italic;
+            color: #d1d5db;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .tech-pill {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 0.9rem;
+            border: 1px solid var(--border);
+        }
+
+        .instruction {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px dashed var(--border);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        .btn-print {
+            background: var(--primary);
+            color: #000;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 15px;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        footer {
+            margin-top: 60px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Project Technical Report</h1>
+        <p class="subtitle">Complete breakdown of Packages, Libraries & Architecture.</p>
+    </header>
+
+    <div class="section-title">NPM Packages (Dependencies)</div>
+    <p style="color: var(--text-muted); margin-bottom: 20px;">Yeh woh packages hain jo `package.json` me install hain aur project ki backbone hain:</p>
+
+    <div class="card">
+        <div class="card-header">
+            <span class="lib-name">react <small style="color:var(--text-muted)">v18.2.0</small></span>
+            <span class="badge">Core Package</span>
+        </div>
+        <p class="lib-desc">The primary UI library for building the application.</p>
+        <div class="why-box">
+            <span class="why-label">Kyu? (Reason)</span>
+            <p class="why-text">Aapke portfolio ke components (Hero, Navbar, etc.) ko dynamic aur interactive banane ke liye React ka use kiya gaya hai. Yeh JSX use karta hai jo coding ko easy banata hai.</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <span class="lib-name">react-dom <small style="color:var(--text-muted)">v18.2.0</small></span>
+            <span class="badge">Renderer</span>
+        </div>
+        <p class="lib-desc">Entry point for web-based rendering.</p>
+        <div class="why-box">
+            <span class="why-label">Kyu? (Reason)</span>
+            <p class="why-text">Yeh package ensure karta hai ki React components actually Chrome/Safari/Edge browser me display ho sakein.</p>
+        </div>
+    </div>
+
+    <div class="section-title">Dev-Packages (Development Only)</div>
+
+    <div class="card">
+        <div class="card-header">
+            <span class="lib-name">vite <small style="color:var(--text-muted)">v5.0.0</small></span>
+            <span class="badge badge-dev">Build System</span>
+        </div>
+        <p class="lib-desc">Modern build tool for lightning-fast development.</p>
+        <div class="why-box">
+            <span class="why-label">Kyu? (Reason)</span>
+            <p class="why-text">Development ke time "Hot Module Replacement" (HMR) handle karne ke liye. Jab aap code change karte hain, toh bina refresh kiye change show ho jaata hai.</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <span class="lib-name">@vitejs/plugin-react <small style="color:var(--text-muted)">v4.0.0</small></span>
+            <span class="badge badge-dev">Plugin</span>
+        </div>
+        <p class="lib-desc">Connectivity bridge between Vite and React.</p>
+        <div class="why-box">
+            <span class="why-label">Kyu? (Reason)</span>
+            <p class="why-text">Vite ko React ke advanced features (jaise Fast Refresh) samjhane ke liye is package ki zarurat padti hai.</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <span class="lib-name">@types/react</span>
+            <span class="badge badge-dev">Type Support</span>
+        </div>
+        <p class="lib-desc">TypeScript type definitions (for Autocomplete).</p>
+        <div class="why-box">
+            <span class="why-label">Kyu? (Reason)</span>
+            <p class="why-text">Code likhte waqt VS Code me "suggestions" aur "autocomplete" sahi se aaye, isliye yeh development support package use hota hai.</p>
+        </div>
+    </div>
+
+    <div class="section-title">External Icons & Assets</div>
+    <div class="card">
+        <p class="lib-desc">Maine project check kiya hai, aap kisi external "Package" (jaise react-icons) ka use nahi kar rahe icons ke liye. Saare icons **Inline SVG** format me hain.</p>
+        <div class="why-box">
+            <span class="why-label">Fayda (Benefit)</span>
+            <p class="why-text">Isse aapka project bohot light-weight rehta hai kyunki koi extra dependency load nahi hoti.</p>
+        </div>
+    </div>
+
+    <div class="section-title">Built-in Web Technologies (Advanced)</div>
+
+    <p style="color: var(--text-muted); margin-bottom: 20px;">Apart from installed libraries, the project uses these powerful native browser capabilities:</p>
+
+    <div class="tech-grid">
+        <div class="tech-pill">
+            <strong>HTML5 Canvas API</strong><br>
+            <span style="font-size: 0.8rem; opacity: 0.7;">Used for Particle Background</span>
+        </div>
+        <div class="tech-pill">
+            <strong>Intersection Observer</strong><br>
+            <span style="font-size: 0.8rem; opacity: 0.7;">Used for Scroll Animations</span>
+        </div>
+        <div class="tech-pill">
+            <strong>CSS3 Animations</strong><br>
+            <span style="font-size: 0.8rem; opacity: 0.7;">Aurora & Glitch Effects</span>
+        </div>
+        <div class="tech-pill">
+            <strong>SVG Graphics</strong><br>
+            <span style="font-size: 0.8rem; opacity: 0.7;">High-quality Icons</span>
+        </div>
+    </div>
+
+    <div class="instruction no-print">
+        <h3 style="margin-bottom: 10px; color: var(--primary);">How to convert to PDF?</h3>
+        <p>Bhai, is file ko browser me open karo aur <strong>Ctrl + P</strong> (Print) dabao. <br> "Destination" me <strong>"Save as PDF"</strong> select karo.</p>
+        <button class="btn-print" onclick="window.print()">Click Here to Save as PDF</button>
+    </div>
+
+    <footer>
+        <p>Generated by Antigravity AI for Aditya's Portfolio Project</p>
+        <p>&copy; 2026</p>
+    </footer>
+</div>
+
+</body>
+</html>

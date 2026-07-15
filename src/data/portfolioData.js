@@ -126,6 +126,15 @@ My aim is not just to write code, but to build products that make a difference. 
       featured:    false,
       color:       "#cbd334",
     },
+    {
+      title:       "RESUME_ANALYZER",
+      description: "Smart Resume Analyzer & ATS — Full-stack app that scores resumes against job descriptions using NLP-based keyword matching and similarity scoring.",
+      tags:        ["React.js", "Node.js", "Express.js", "MongoDB", "NLP (Natural.js)", "Vite", "Recharts", "Git & GitHub", "Render & Vercel"],
+      github:      "https://github.com/aadi000666/RESUME_ANALYZER",
+      live:        "https://resume-analyzer-nkte.vercel.app/",
+      featured:    false,
+      color:       "#ec63f1",
+    },
     // ← Aur projects add karo
   ],
 
@@ -171,7 +180,7 @@ My aim is not just to write code, but to build products that make a difference. 
 
   // ── STATS (Hero section mein dikhte hain) ──────────────
   stats: [
-    { value: "5+",  label: "Projects Built"   },  // ← Change karo
+    { value: "10+",  label: "Projects Built"   },  // ← Change karo
     { value: "1.5+",   label: "Years Coding"     },
     { value: "5+",   label: "Technologies"     },
     { value: "100%", label: "Dedication"       },
